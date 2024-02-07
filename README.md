@@ -7,6 +7,6 @@ Backend for a phonebook application, using Express and MongoDB
 - Express as framework
   - Express JSON parser
 - Morgan with `tiny` config as middleware
-
+- CORS middleware
 ## Other software used
 - Postman for HTTP requests
