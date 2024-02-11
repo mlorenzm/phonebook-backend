@@ -12,7 +12,7 @@ personRouter.get("/api/persons", (request, response) => {
 personRouter.get("/api/persons/:id", (request, response) => {
   const id = Number(request.params.id);
   if (id <= persons.length) {
-    const person = persons.filter((person) => person.id !== id);
+    const person = persons.filter((person) => person.id == id);
     response.json(person);
   } else {
     return response.sendStatus(404);
