@@ -12,21 +12,21 @@ app.use(cors());
 app.use(express.static("dist"));
 app.use(router);
 
-app.get("/", (request, response) => {
-  response.send("backend homepage");
+app.get("/", (req, res) => {
+  res.send("backend homepage");
 });
 
-app.get("/info", (request, response) => {
+app.get("/info", (req, res) => {
   const len = persons.length;
   const time = new Date();
   const infoMsg = `<h1>Phonebook has info for ${len} people</h1><br/>
   ${time}`;
 
-  response.send(infoMsg);
+  res.send(infoMsg);
 });
 
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: "unknown endpoint" });
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: "unknown endpoint" });
 };
 
 app.use(unknownEndpoint);

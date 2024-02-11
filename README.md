@@ -1,6 +1,7 @@
 # Phonebook backend
 
 Backend for a phonebook application, using Express and MongoDB
+Using ES6 Modules  
 
 ## Packages
 
