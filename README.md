@@ -2,7 +2,8 @@
 
 Backend for a phonebook application, using Express and MongoDB
 
-### Packages
+## Packages
+
 - *nodemon* for node server auto-refresh
 - *Express* as framework
   - *Express* JSON parser
@@ -10,6 +11,9 @@ Backend for a phonebook application, using Express and MongoDB
 - *CORS* middleware
 - *Static* middleware for frontend integration
 <!-- DOTENV -->
+
 ## Other software used
+
 - Postman for HTTP requests
-- Deploy to Render.io
+- Deploy to Render.io  
+  
