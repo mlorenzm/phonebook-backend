@@ -1,7 +1,7 @@
-const express = require("express");
-const morgan = require("morgan");
+import express from "express";
+import morgan from "morgan";
 const app = express();
-const cors = require("cors");
+import cors from "cors";
 const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(morgan("tiny"));
@@ -101,5 +101,5 @@ app.use(unknownEndpoint);
 morgan.token("body", (req, res) => JSON.stringify(req.body));
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Example app listening on  http://localhost:${PORT}`);
 });
