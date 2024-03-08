@@ -11,9 +11,17 @@ const name = process.argv[3];
 const number = process.argv[4];
 
 const url = `mongodb+srv://mlorenzomohamed:${password}@cluster0.cjxdn3x.mongodb.net/phonebook?retryWrites=true&w=majority`;
+// const url = `mongodb+srv://mlorenzomohamed:${password}@cluster0.cjxdn3x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.set("strictQuery", false);
-mongoose.connect(url);
+mongoose
+  .connect(url)
+  .then((result) => {
+    console.log("connected to MongoDB");
+  })
+  .catch((error) => {
+    console.log("error connecting to MongoDB:", error.message);
+  });
 
 // Define Schema for Contact (how are they going to be stored in DB)
 const contactSchema = new mongoose.Schema({
