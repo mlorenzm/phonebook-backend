@@ -2,6 +2,7 @@ import { Router } from "express";
 import { persons } from "../server/utils/persons.mjs";
 import express from "express";
 import morgan from "morgan";
+import { Contact } from "../server/db/mongo.mjs";
 const personRouter = Router();
 personRouter.use(express.json());
 personRouter.use(morgan("tiny"));
@@ -10,13 +11,16 @@ personRouter.get("/api/persons", (request, response) => {
 });
 
 personRouter.get("/api/persons/:id", (request, response) => {
-  const id = Number(request.params.id);
-  if (id <= persons.length) {
-    const person = persons.filter((person) => person.id == id);
-    response.json(person);
-  } else {
-    return response.sendStatus(404);
-  }
+  Contact.findById(request.params.id).then((contact) => {
+    response.json(contact);
+  });
+  // const id = Number(request.params.id);
+  // if (id <= persons.length) {
+  //   const person = persons.filter((person) => person.id == id);
+  //   response.json(person);
+  // } else {
+  //   return response.sendStatus(404);
+  // }
 });
 
 personRouter.delete("/api/persons/:id", (request, response) => {
@@ -31,7 +35,6 @@ personRouter.delete("/api/persons/:id", (request, response) => {
 
 personRouter.post("/api/persons/", (request, response) => {
   const body = request.body;
-  console.log(body);
   if (!body) {
     return response.sendStatus(404);
   }
@@ -46,13 +49,14 @@ personRouter.post("/api/persons/", (request, response) => {
       .status(500)
       .send({ error: "This person is already in your phonebook" });
   }
-  const person = {
-    id: persons.length,
+  const person = new Contact({
     name: body.name,
     number: body.number,
-  };
+  });
   persons.push(person);
-  response.json(person);
+  person.save().then((savedPerson) => {
+    response.json(savedPerson);
+  });
 });
 
 export default personRouter;
