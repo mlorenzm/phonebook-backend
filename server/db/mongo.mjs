@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import {} from "dotenv/config";
 
 // Stablish connection
 if (process.argv.length < 3) {
@@ -6,11 +7,10 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
-const password = process.argv[2];
 const name = process.argv[3];
 const number = process.argv[4];
 
-const url = `mongodb+srv://mlorenzomohamed:${password}@cluster0.cjxdn3x.mongodb.net/phonebook?retryWrites=true&w=majority`;
+const url = process.env.MONGODB_URI;
 // const url = `mongodb+srv://mlorenzomohamed:${password}@cluster0.cjxdn3x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.set("strictQuery", false);
@@ -54,3 +54,5 @@ if (process.argv.length == 3) {
     mongoose.connection.close();
   });
 }
+
+export default mongoose.model("Contact", new Contact());

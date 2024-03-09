@@ -2,10 +2,10 @@ import express from "express";
 import morgan from "morgan";
 import { persons } from "./utils/persons.mjs";
 import router from "../routes/index.mjs";
-
+import {} from "dotenv/config";
 const app = express();
 import cors from "cors";
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());

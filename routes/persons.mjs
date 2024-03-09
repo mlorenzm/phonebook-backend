@@ -31,6 +31,7 @@ personRouter.delete("/api/persons/:id", (request, response) => {
 
 personRouter.post("/api/persons/", (request, response) => {
   const body = request.body;
+  console.log(body);
   if (!body) {
     return response.sendStatus(404);
   }
@@ -46,11 +47,11 @@ personRouter.post("/api/persons/", (request, response) => {
       .send({ error: "This person is already in your phonebook" });
   }
   const person = {
-    id: Math.round(Math.random() * 500),
+    id: persons.length,
     name: body.name,
     number: body.number,
   };
-  persons = persons.concat(person);
+  persons.push(person);
   response.json(person);
 });
 
